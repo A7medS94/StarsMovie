@@ -16,6 +16,9 @@
 		8C23225E224D41CB00A7C7C1 /* Stars_MovieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C23225D224D41CB00A7C7C1 /* Stars_MovieUITests.swift */; };
 		8C7B7814224D910F003E689C /* PopularPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B7812224D910F003E689C /* PopularPeopleCell.swift */; };
 		8C7B7815224D910F003E689C /* PopularPeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7B7813224D910F003E689C /* PopularPeopleCell.xib */; };
+		8C8D9F8A224E124800D33C9E /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8D9F89224E124700D33C9E /* URLs.swift */; };
+		8C9016E0224E282900975BFB /* PopularPeopleStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9016DF224E282900975BFB /* PopularPeopleStruct.swift */; };
+		8C9016E3224E4ABA00975BFB /* PopularPeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9016E2224E4ABA00975BFB /* PopularPeopleService.swift */; };
 		9CDA94592761B82E1AC2BF13 /* Pods_Stars_Movie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5853879C22AC67C764616CE /* Pods_Stars_Movie.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,9 @@
 		8C23225F224D41CB00A7C7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C7B7812224D910F003E689C /* PopularPeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleCell.swift; sourceTree = "<group>"; };
 		8C7B7813224D910F003E689C /* PopularPeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPeopleCell.xib; sourceTree = "<group>"; };
+		8C8D9F89224E124700D33C9E /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		8C9016DF224E282900975BFB /* PopularPeopleStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleStruct.swift; sourceTree = "<group>"; };
+		8C9016E2224E4ABA00975BFB /* PopularPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleService.swift; sourceTree = "<group>"; };
 		E5853879C22AC67C764616CE /* Pods_Stars_Movie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stars_Movie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -125,7 +131,7 @@
 		8C23223C224D41CA00A7C7C1 /* Stars Movie */ = {
 			isa = PBXGroup;
 			children = (
-				8C23226B224D427700A7C7C1 /* Model */,
+				8C8D9F87224E123000D33C9E /* Model */,
 				8C23226C224D428600A7C7C1 /* View */,
 				8C23226D224D429100A7C7C1 /* Controller */,
 				8C23223D224D41CA00A7C7C1 /* AppDelegate.swift */,
@@ -155,15 +161,6 @@
 			path = "Stars MovieUITests";
 			sourceTree = "<group>";
 		};
-		8C23226B224D427700A7C7C1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				8C7B780F224D82D5003E689C /* URLs */,
-				8C7B780E224D7705003E689C /* API */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		8C23226C224D428600A7C7C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,20 +175,6 @@
 				8C7B7810224D8D3E003E689C /* MainVC */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		8C7B780E224D7705003E689C /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		8C7B780F224D82D5003E689C /* URLs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = URLs;
 			sourceTree = "<group>";
 		};
 		8C7B7810224D8D3E003E689C /* MainVC */ = {
@@ -209,6 +192,48 @@
 				8C7B7813224D910F003E689C /* PopularPeopleCell.xib */,
 			);
 			path = MainVC;
+			sourceTree = "<group>";
+		};
+		8C8D9F87224E123000D33C9E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C8D9F88224E123700D33C9E /* URLs */,
+				8C8D9F8B224E163300D33C9E /* API */,
+				8C9016DE224E27B700975BFB /* Objects */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8C8D9F88224E123700D33C9E /* URLs */ = {
+			isa = PBXGroup;
+			children = (
+				8C8D9F89224E124700D33C9E /* URLs.swift */,
+			);
+			path = URLs;
+			sourceTree = "<group>";
+		};
+		8C8D9F8B224E163300D33C9E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8C9016E1224E4A7600975BFB /* PopularPeople+API */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8C9016DE224E27B700975BFB /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8C9016DF224E282900975BFB /* PopularPeopleStruct.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		8C9016E1224E4A7600975BFB /* PopularPeople+API */ = {
+			isa = PBXGroup;
+			children = (
+				8C9016E2224E4ABA00975BFB /* PopularPeopleService.swift */,
+			);
+			path = "PopularPeople+API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,9 +417,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C9016E3224E4ABA00975BFB /* PopularPeopleService.swift in Sources */,
 				8C232240224D41CA00A7C7C1 /* MainVC.swift in Sources */,
 				8C7B7814224D910F003E689C /* PopularPeopleCell.swift in Sources */,
 				8C23223E224D41CA00A7C7C1 /* AppDelegate.swift in Sources */,
+				8C9016E0224E282900975BFB /* PopularPeopleStruct.swift in Sources */,
+				8C8D9F8A224E124800D33C9E /* URLs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
