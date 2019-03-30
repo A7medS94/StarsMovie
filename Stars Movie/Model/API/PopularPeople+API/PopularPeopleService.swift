@@ -13,19 +13,15 @@ import Alamofire
 class PopularPeopleService {
     
     
+    static var images = [String]()
+    static var names = [String]()
+    
     class func getPopularPeople(page : Int = 1, complation: @escaping (_ JSON : PopularPeople , _ lastPage : Int)-> Void){
         
-        let url = URLs.PopularPeopleURL
+        let url = URLs.PopularPeopleURL + String(page)
         
-        let parameters : [String: Any] = [
-            "api_key" : URLs.API_Key,
-            "language": "en-US",
-            "page"    : page
-        ]
-        
-        
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-            
+            Alamofire.request(url).responseJSON { (response) in
+                
             do{
                 let JSON = try JSONDecoder().decode(PopularPeople.self , from: response.data!)
                 
@@ -33,6 +29,10 @@ class PopularPeopleService {
                 for data in [JSON] {
                     if let lastp = data.total_pages{
                         lastPage = lastp
+                        for data in data.results!{
+                            self.images.append(data.profile_path!)
+                            self.names.append(data.name!)
+                        }
                     }
                 }
                 

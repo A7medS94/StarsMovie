@@ -8,5 +8,6 @@ target 'Stars Movie' do
   # Pods for Stars Movie
 
 pod 'Alamofire'
+pod 'Kingfisher'
 
 end

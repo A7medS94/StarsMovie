@@ -97,7 +97,8 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? PopularPeopleCell else {return UICollectionViewCell()}
         
-            cell.popularPersonImage.image = UIImage(named: "placeholder")
+        cell.displayImg(URL :URL(string: URLs.ImageRequestURL + PopularPeopleService.images[indexPath.row])!)
+        cell.nameLbl.text = PopularPeopleService.names[indexPath.row]
         
             return cell
     }
