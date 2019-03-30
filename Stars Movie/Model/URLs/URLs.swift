@@ -17,6 +17,7 @@ class URLs {
     ///mark:- Getting Popular People data, takes 3 parameters(API_Key, Language, Page)
     static let PopularPeopleURL = "https://api.themoviedb.org/3/person/popular?api_key=" + URLs.API_Key + "&language=en-US&page="
     
+    ///mark:- Base link to request image
     static let ImageRequestURL = "https://image.tmdb.org/t/p/w185"
     
 }

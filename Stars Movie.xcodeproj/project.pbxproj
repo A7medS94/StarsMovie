@@ -14,6 +14,7 @@
 		8C232248224D41CB00A7C7C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C232246224D41CB00A7C7C1 /* LaunchScreen.storyboard */; };
 		8C232253224D41CB00A7C7C1 /* Stars_MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C232252224D41CB00A7C7C1 /* Stars_MovieTests.swift */; };
 		8C23225E224D41CB00A7C7C1 /* Stars_MovieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C23225D224D41CB00A7C7C1 /* Stars_MovieUITests.swift */; };
+		8C3E357E2250048E00F0C376 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E357D2250048E00F0C376 /* DetailsVC.swift */; };
 		8C7B7814224D910F003E689C /* PopularPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B7812224D910F003E689C /* PopularPeopleCell.swift */; };
 		8C7B7815224D910F003E689C /* PopularPeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7B7813224D910F003E689C /* PopularPeopleCell.xib */; };
 		8C8D9F8A224E124800D33C9E /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8D9F89224E124700D33C9E /* URLs.swift */; };
@@ -55,6 +56,7 @@
 		8C232259224D41CB00A7C7C1 /* Stars MovieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stars MovieUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C23225D224D41CB00A7C7C1 /* Stars_MovieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stars_MovieUITests.swift; sourceTree = "<group>"; };
 		8C23225F224D41CB00A7C7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C3E357D2250048E00F0C376 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		8C7B7812224D910F003E689C /* PopularPeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleCell.swift; sourceTree = "<group>"; };
 		8C7B7813224D910F003E689C /* PopularPeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPeopleCell.xib; sourceTree = "<group>"; };
 		8C8D9F89224E124700D33C9E /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
@@ -173,8 +175,17 @@
 			isa = PBXGroup;
 			children = (
 				8C7B7810224D8D3E003E689C /* MainVC */,
+				8C3E357C2250042500F0C376 /* DetailsVC */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8C3E357C2250042500F0C376 /* DetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				8C3E357D2250048E00F0C376 /* DetailsVC.swift */,
+			);
+			path = DetailsVC;
 			sourceTree = "<group>";
 		};
 		8C7B7810224D8D3E003E689C /* MainVC */ = {
@@ -423,6 +434,7 @@
 				8C232240224D41CA00A7C7C1 /* MainVC.swift in Sources */,
 				8C7B7814224D910F003E689C /* PopularPeopleCell.swift in Sources */,
 				8C23223E224D41CA00A7C7C1 /* AppDelegate.swift in Sources */,
+				8C3E357E2250048E00F0C376 /* DetailsVC.swift in Sources */,
 				8C9016E0224E282900975BFB /* PopularPeopleStruct.swift in Sources */,
 				8C8D9F8A224E124800D33C9E /* URLs.swift in Sources */,
 			);

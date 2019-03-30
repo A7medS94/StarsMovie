@@ -20,9 +20,11 @@ class PopularPeopleCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func displayImg(URL : URL){
+    func displayImg(URLString : String){
+        
+        let url = URL(string: URLs.ImageRequestURL + URLString)
         self.popularPersonImage.kf.indicatorType = .activity
-        self.popularPersonImage.kf.setImage(with: URL, placeholder: UIImage(named: "placeholder"), options: [.transition(ImageTransition.flipFromTop(0.5))], progressBlock: nil, completionHandler: nil)
+        self.popularPersonImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: [.transition(ImageTransition.flipFromTop(0.5))], progressBlock: nil, completionHandler: nil)
     }
 
 }
