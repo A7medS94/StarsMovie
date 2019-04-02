@@ -1,15 +1,15 @@
 //
-//  DetailsCell.swift
+//  DetailsFromSearchCell.swift
 //  Stars Movie
 //
-//  Created by Ahmed Samir on 3/31/19.
+//  Created by Ahmed Samir on 4/1/19.
 //  Copyright © 2019 Ahmed Samir. All rights reserved.
 //
 
 import UIKit
 import Kingfisher
 
-class DetailsCell: UICollectionViewCell {
+class DetailsFromSearchCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     

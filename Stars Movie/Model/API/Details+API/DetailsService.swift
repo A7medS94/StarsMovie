@@ -21,7 +21,7 @@ class DetailsService {
             
             do{
                 let JSONdecoder = try JSONDecoder().decode(Details.self , from: response.data!)
-
+                
                 complation(JSONdecoder)
                 
             }catch{

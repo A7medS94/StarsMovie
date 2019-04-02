@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class PopularPeopleCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var popularPersonImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var knownForLbl: UILabel!
@@ -26,5 +26,4 @@ class PopularPeopleCell: UICollectionViewCell {
         self.popularPersonImage.kf.indicatorType = .activity
         self.popularPersonImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: [.transition(ImageTransition.flipFromTop(0.5))], progressBlock: nil, completionHandler: nil)
     }
-
 }

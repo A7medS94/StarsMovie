@@ -1,5 +1,5 @@
 //
-//  CrewCell.swift
+//  CrewFromSearchCell.swift
 //  Stars Movie
 //
 //  Created by Ahmed Samir on 4/1/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class CrewCell: UICollectionViewCell {
+class CrewFromSearchCell: UICollectionViewCell {
     
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!

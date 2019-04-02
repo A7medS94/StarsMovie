@@ -9,13 +9,12 @@
 import Foundation
 
 struct MovieCrew : Codable {
-
-  var cast : [Crew]?
     
+    var cast : [Crew]?
 }
 
 struct Crew : Codable {
-
+    
     var name : String?
     var profile_path : String?
 }

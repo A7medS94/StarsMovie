@@ -1,5 +1,5 @@
 //
-//  CastVC.swift
+//  CastFromSearchVC.swift
 //  Stars Movie
 //
 //  Created by Ahmed Samir on 4/1/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class CastVC: UIViewController {
+class CastFromSearchVC: UIViewController {
     
     //Outlets
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -23,7 +23,7 @@ class CastVC: UIViewController {
     //Vars
     var cast : Cast?
     private var movieCrew : MovieCrew?
-    private var cellIdentifier = "CrewCell"
+    private var cellIdentifier = "CrewFromSearchCell"
     
     
     override func viewDidLoad() {
@@ -85,14 +85,14 @@ class CastVC: UIViewController {
 
 
 
-extension CastVC : UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
+extension CastFromSearchVC : UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieCrew?.cast?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? CrewCell else {return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? CrewFromSearchCell else {return UICollectionViewCell()}
         
         cell.displayImg(URLString: movieCrew?.cast![indexPath.row].profile_path ?? "")
         cell.nameLbl.text = movieCrew?.cast![indexPath.row].name ?? "Unknown"
@@ -101,7 +101,7 @@ extension CastVC : UICollectionViewDataSource , UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let screenSize = UIScreen.main.bounds.width
         let height = CGFloat(131)
         let width = (screenSize-40)/3

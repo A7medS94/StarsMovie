@@ -1,15 +1,15 @@
 //
-//  DetailsVC.swift
+//  DetailsFromSearchVC.swift
 //  Stars Movie
 //
-//  Created by Ahmed Samir on 3/30/19.
+//  Created by Ahmed Samir on 4/1/19.
 //  Copyright © 2019 Ahmed Samir. All rights reserved.
 //
 
 import UIKit
 import Kingfisher
 
-class DetailsVC: UIViewController {
+class DetailsFromSearchVC: UIViewController {
     
     //Outlets
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -25,9 +25,9 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var biographyTxtView: UITextView!
     
     //Vars
-    var result : Results?
+    var person : Result?
     private var Details : Details?
-    private var cellIdentifier = "DetailsCell"
+    private var cellIdentifier = "DetailsFromSearchCell"
     private var movieCredits : MovieCredit?
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class DetailsVC: UIViewController {
         handleData()
         requestMovieCredits()
         // Do any additional setup after loading the view.
-        navigationBar.topItem?.title = result?.name ?? "Unknown"
+        navigationBar.topItem?.title = person?.name ?? "Unknown"
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -54,7 +54,7 @@ class DetailsVC: UIViewController {
     }
     ///Getting the popular details data using compilation handler
     private func handleData(){
-        DetailsService.getDetails(personID: result?.id ?? 0) { (Details) in
+        DetailsService.getDetails(personID: person?.id ?? 0) { (Details) in
             self.Details = Details
             self.displayImage(imageURL: Details.profile_path ?? "")
             self.displayData(details: Details)
@@ -83,7 +83,7 @@ class DetailsVC: UIViewController {
     }
     ///Getting the person movies history data using compilation handler
     private func requestMovieCredits(){
-        MovieCreditsService.getMovieCredit(personID: result?.id ?? 0) { (movieCredits) in
+        MovieCreditsService.getMovieCredit(personID: person?.id ?? 0) { (movieCredits) in
             
             self.movieCredits = movieCredits
             self.collectionView.reloadData()
@@ -102,13 +102,16 @@ class DetailsVC: UIViewController {
     }
     ///Dismiss the view controller
     @IBAction func backBtn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "searchVC")
+        present(VC, animated: true, completion: nil)
     }
 }
 
 
 
-extension DetailsVC : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension DetailsFromSearchVC : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieCredits?.cast?.count ?? 0
@@ -116,7 +119,7 @@ extension DetailsVC : UICollectionViewDataSource, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? DetailsCell  else {return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? DetailsFromSearchCell  else {return UICollectionViewCell()}
         
         cell.displayImg(URLString: movieCredits?.cast![indexPath.row].poster_path ?? "")
         return cell
@@ -127,7 +130,7 @@ extension DetailsVC : UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         let cast = self.movieCredits?.cast![indexPath.row]
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "castVC") as! CastVC
+        let VC = storyboard.instantiateViewController(withIdentifier: "castFromSearchVC") as! CastFromSearchVC
         VC.cast = cast
         present(VC, animated: true, completion: nil)
     }

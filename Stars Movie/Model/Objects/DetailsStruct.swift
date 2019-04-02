@@ -11,8 +11,6 @@ import Foundation
 struct Details : Codable {
     
     var birthday : String?
-    var known_for_department : String?
-    var deathday : String?
     var id : Int?
     var name : String?
     var gender : Int?

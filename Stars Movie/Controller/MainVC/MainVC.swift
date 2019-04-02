@@ -10,13 +10,13 @@ import UIKit
 
 
 class MainVC: UIViewController {
-
+    
     //Outlets
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
     //Vars
-    var results: [Results]? = []
+    private var results: [Results]? = []
     private let cellIdentifier = "PopularPeopleCell"
     lazy var refresher : UIRefreshControl = { () -> UIRefreshControl in
         let ref = UIRefreshControl()
@@ -30,40 +30,54 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.global(qos: .background).async {
+            self.handleRefresh()
+        }
+        
         collectionView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         customStatusBar()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.addSubview(refresher)
-        
-        handleRefresh()
     }
-    
+    ///Returns light status bar content
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
-    
+    ///Tells the status bar the background color is the same nabigation bar color
     func customStatusBar(){
         if let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView {
             statusBar.backgroundColor = navigationBar.barTintColor
         }
     }
-    
+    ///Getting the popularPeople data using compilation handler
     @objc private func handleRefresh(){
         
-        self.refresher.endRefreshing()
-        guard !isloading else {return}
-        isloading = true
-        PopularPeopleService.getPopularPeople { (popularPeoples, lastPage) in
+        if Reachability.isConnectedToNetwork(){
+            DispatchQueue.main.async {
+                self.refresher.endRefreshing()
+            }
+            guard !isloading else {return}
+            isloading = true
+            PopularPeopleService.getPopularPeople { (popularPeoples, lastPage) in
+                
+                self.results = popularPeoples.results
+                self.isloading = false
+                self.collectionView.reloadData()
+                self.currentPage = 1
+                self.lastPage = lastPage
+            }
+        }else{
             
-            self.results = popularPeoples.results
-            self.isloading = false
-            self.collectionView.reloadData()
-            self.currentPage = 1
-            self.lastPage = lastPage
+            let alert = UIAlertController(title: "Error", message: "No internet connection", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Ok", style: .cancel) { (UIAlertAction) in
+                print("No internet connection")
+            }
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
         }
     }
-    
+    ///Loading more data by adding +1 to page parameter
     fileprivate func loadMore(){
         
         guard !isloading else {return}
@@ -80,7 +94,13 @@ class MainVC: UIViewController {
             self.lastPage = lastPage
         }
     }
-
+    ///Going to search view controller
+    @IBAction func searchBtn(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "searchVC") as! SearchVC
+        present(VC, animated: true, completion: nil)
+    }
 }
 
 
@@ -104,7 +124,7 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
             knownFor += ", "
         }
         cell.knownForLbl.text = knownFor
-            return cell
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

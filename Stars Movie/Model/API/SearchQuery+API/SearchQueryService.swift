@@ -1,8 +1,8 @@
 //
-//  PopularPeopleService.swift
+//  SearchQueryService.swift
 //  Stars Movie
 //
-//  Created by Ahmed Samir on 3/29/19.
+//  Created by Ahmed Samir on 4/1/19.
 //  Copyright © 2019 Ahmed Samir. All rights reserved.
 //
 
@@ -10,17 +10,17 @@ import Foundation
 import Alamofire
 
 
-class PopularPeopleService {
+class SearchQueryService {
     
     
-    class func getPopularPeople(page : Int = 1, complation: @escaping (_ popularPeoples : PopularPeople , _ lastPage : Int)-> Void){
+    class func getQuery(page : Int = 1, name : String , complation: @escaping (_ searchQuery : SearchQuery , _ lastPage : Int)-> Void){
         
-        let url = URLs.PopularPeopleURL + String(page)
+        let url = URLs.SearchQueryBaseURL + name + URLs.SearchQueryMiddleURL + String(page) + URLs.SearchQueryEndURL
         
         Alamofire.request(url).responseJSON { (response) in
             
             do{
-                let JSONdecoder = try JSONDecoder().decode(PopularPeople.self , from: response.data!)
+                let JSONdecoder = try JSONDecoder().decode(SearchQuery.self , from: response.data!)
                 
                 var lastPage = Int()
                 
