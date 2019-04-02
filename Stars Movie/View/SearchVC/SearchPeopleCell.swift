@@ -22,6 +22,7 @@ class SearchPeopleCell: UITableViewCell {
         personImage.layer.borderColor = UIColor.black.cgColor
         personImage.layer.cornerRadius = personImage.frame.height/2
         personImage.clipsToBounds = true
+        personImage.contentMode = .scaleAspectFill
     }
     
     func displayImg(URLString : String){

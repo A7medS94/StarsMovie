@@ -52,7 +52,7 @@ class SearchVC: UIViewController {
         guard currentPage < lastPage else {return}
         isloading = true
         
-        SearchQueryService.getQuery(page: currentPage+1, name: searchName!) { (searchQuery, lastPage) in
+        PopularPeopleDataProvider.getQuery(page: currentPage+1, name: searchName!) { (searchQuery, lastPage) in
             
             for data in searchQuery.results!{
                 self.result?.append(data)
@@ -126,7 +126,7 @@ extension SearchVC : UISearchBarDelegate{
             self.searchName = searchTxt
             guard !isloading else {return}
             isloading = true
-            SearchQueryService.getQuery(name: searchTxt) { (searchQuery, lastpage) in
+            PopularPeopleDataProvider.getQuery(name: searchTxt) { (searchQuery, lastpage) in
                 self.result = searchQuery.results
                 self.isloading = false
                 self.tableView.reloadData()

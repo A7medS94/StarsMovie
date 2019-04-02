@@ -75,7 +75,7 @@ class CastVC: UIViewController {
     ///Getting the movie crews data using compilation handler
     private func requestMovieCrew(){
         
-        MovieCrewService.getMovieCrew(movieID : cast?.id ?? 0) { (movieCrew) in
+        PopularPeopleDataProvider.getMovieCrew(movieID : cast?.id ?? 0) { (movieCrew) in
             
             self.movieCrew = movieCrew
             self.collectionView.reloadData()

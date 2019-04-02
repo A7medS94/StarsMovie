@@ -54,7 +54,7 @@ class DetailsFromSearchVC: UIViewController {
     }
     ///Getting the popular details data using compilation handler
     private func handleData(){
-        DetailsService.getDetails(personID: person?.id ?? 0) { (Details) in
+        PopularPeopleDataProvider.getDetails(personID: person?.id ?? 0) { (Details) in
             self.Details = Details
             self.displayImage(imageURL: Details.profile_path ?? "")
             self.displayData(details: Details)
@@ -83,7 +83,7 @@ class DetailsFromSearchVC: UIViewController {
     }
     ///Getting the person movies history data using compilation handler
     private func requestMovieCredits(){
-        MovieCreditsService.getMovieCredit(personID: person?.id ?? 0) { (movieCredits) in
+        PopularPeopleDataProvider.getMovieCredit(personID: person?.id ?? 0) { (movieCredits) in
             
             self.movieCredits = movieCredits
             self.collectionView.reloadData()

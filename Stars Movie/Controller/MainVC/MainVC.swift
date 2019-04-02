@@ -59,7 +59,7 @@ class MainVC: UIViewController {
             }
             guard !isloading else {return}
             isloading = true
-            PopularPeopleService.getPopularPeople { (popularPeoples, lastPage) in
+            PopularPeopleDataProvider.getPopularPeople { (popularPeoples, lastPage) in
                 
                 self.results = popularPeoples.results
                 self.isloading = false
@@ -83,7 +83,7 @@ class MainVC: UIViewController {
         guard !isloading else {return}
         guard currentPage < lastPage else {return}
         isloading = true
-        PopularPeopleService.getPopularPeople(page: currentPage+1) { (popularPeoples, lastPage) in
+        PopularPeopleDataProvider.getPopularPeople(page: currentPage+1) { (popularPeoples, lastPage) in
             
             for data in popularPeoples.results!{
                 self.results?.append(data)
