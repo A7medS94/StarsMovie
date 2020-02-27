@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gTV-IL-0wX" customClass="PopularPeopleCell" customModule="Stars_Movie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="338" height="272"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="338" height="272"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mG0-Vh-2U4">
+                        <rect key="frame" x="0.0" y="0.0" width="338" height="272"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IW7-UC-J1z">
+                                <rect key="frame" x="0.0" y="0.0" width="338" height="272"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYX-jH-UMj">
+                                <rect key="frame" x="0.0" y="246" width="338" height="26"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0CJ-cQ-NW8">
+                                        <rect key="frame" x="4" y="0.0" width="330" height="26"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr8-l0-tUc">
+                                                <rect key="frame" x="0.0" y="0.0" width="330" height="10.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="11"/>
+                                                <color key="textColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEr-bL-OCn">
+                                                <rect key="frame" x="0.0" y="15.5" width="330" height="10.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.090196078431372548" blue="0.090196078431372548" alpha="0.59546232876712324" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="0CJ-cQ-NW8" firstAttribute="leading" secondItem="AYX-jH-UMj" secondAttribute="leading" constant="4" id="PIO-Cd-3WK"/>
+                                    <constraint firstAttribute="bottom" secondItem="0CJ-cQ-NW8" secondAttribute="bottom" id="izz-zm-l9z"/>
+                                    <constraint firstAttribute="height" constant="26" id="q0D-3Q-kCI"/>
+                                    <constraint firstItem="0CJ-cQ-NW8" firstAttribute="top" secondItem="AYX-jH-UMj" secondAttribute="top" id="vnK-Jg-sNY"/>
+                                    <constraint firstAttribute="trailing" secondItem="0CJ-cQ-NW8" secondAttribute="trailing" constant="4" id="zra-TX-A2t"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IW7-UC-J1z" firstAttribute="top" secondItem="mG0-Vh-2U4" secondAttribute="top" id="14D-A7-EbE"/>
+                            <constraint firstItem="IW7-UC-J1z" firstAttribute="leading" secondItem="mG0-Vh-2U4" secondAttribute="leading" id="3Px-yh-Di8"/>
+                            <constraint firstAttribute="bottom" secondItem="IW7-UC-J1z" secondAttribute="bottom" id="3cl-Vv-8t4"/>
+                            <constraint firstAttribute="bottom" secondItem="AYX-jH-UMj" secondAttribute="bottom" id="7Kj-Y0-ORB"/>
+                            <constraint firstAttribute="trailing" secondItem="AYX-jH-UMj" secondAttribute="trailing" id="9Fr-zv-r2A"/>
+                            <constraint firstAttribute="trailing" secondItem="AYX-jH-UMj" secondAttribute="trailing" id="IdB-yn-Bs9"/>
+                            <constraint firstAttribute="trailing" secondItem="IW7-UC-J1z" secondAttribute="trailing" id="pKf-ai-Fle"/>
+                            <constraint firstItem="AYX-jH-UMj" firstAttribute="leading" secondItem="mG0-Vh-2U4" secondAttribute="leading" id="xkN-7w-qzw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mG0-Vh-2U4" secondAttribute="bottom" id="0Aa-9V-RUI"/>
+                <constraint firstItem="mG0-Vh-2U4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Dox-mT-Nu8"/>
+                <constraint firstAttribute="trailing" secondItem="mG0-Vh-2U4" secondAttribute="trailing" id="WNd-4C-NIZ"/>
+                <constraint firstItem="mG0-Vh-2U4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tRc-xm-3Ke"/>
+            </constraints>
+            <size key="customSize" width="340" height="272"/>
+            <connections>
+                <outlet property="containerView" destination="mG0-Vh-2U4" id="3JQ-gI-3Uf"/>
+                <outlet property="knownForLbl" destination="HEr-bL-OCn" id="27Z-E6-hXY"/>
+                <outlet property="nameLbl" destination="Qr8-l0-tUc" id="adK-ML-HA4"/>
+                <outlet property="popularPersonImage" destination="IW7-UC-J1z" id="WoS-96-KdK"/>
+            </connections>
+            <point key="canvasLocation" x="-46.399999999999999" y="128.63568215892056"/>
+        </collectionViewCell>
+    </objects>
+</document>

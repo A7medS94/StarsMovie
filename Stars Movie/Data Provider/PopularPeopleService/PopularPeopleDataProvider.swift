@@ -16,6 +16,7 @@ class PopularPeopleDataProvider {
     class func getPopularPeople(page : Int = 1, complation: @escaping (_ popularPeoples : PopularPeople , _ lastPage : Int)-> Void){
         
         let url = URLs.PopularPeopleURL + String(page)
+        print(url)
         
         Alamofire.request(url).responseJSON { (response) in
             

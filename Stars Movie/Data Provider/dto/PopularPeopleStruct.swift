@@ -15,18 +15,3 @@ struct PopularPeople : Codable {
     var results : [Results]?
 }
 
-struct Results : Codable {
-    
-    var id : Int?
-    var profile_path : String?
-    var name : String?
-    var known_for : [KnownFor]?
-}
-
-struct KnownFor : Codable {
-    
-    var id : Int?
-    var title : String?
-}
-
-

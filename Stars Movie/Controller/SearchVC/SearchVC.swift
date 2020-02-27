@@ -120,7 +120,6 @@ extension SearchVC : UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if Reachability.isConnectedToNetwork(){
             
             let searchTxt = searchText.replacingOccurrences(of: " ", with: "-")
             self.searchName = searchTxt
@@ -133,15 +132,7 @@ extension SearchVC : UISearchBarDelegate{
                 self.currentPage = 1
                 self.lastPage = lastpage
             }
-        }else{
-            
-            let alert = UIAlertController(title: "Error", message: "No internet connection", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "Ok", style: .cancel) { (UIAlertAction) in
-                print("No internet connection")
-            }
-            alert.addAction(cancel)
-            present(alert, animated: true, completion: nil)
-        }
+
     }
 }
 

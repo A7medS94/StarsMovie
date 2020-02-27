@@ -7,7 +7,8 @@ target 'Stars Movie' do
 
   # Pods for Stars Movie
 
-pod 'Alamofire'
-pod 'Kingfisher'
+  pod 'IHProgressHUD'
+  pod 'Moya/RxSwift'
+  pod 'Kingfisher'
 
 end
