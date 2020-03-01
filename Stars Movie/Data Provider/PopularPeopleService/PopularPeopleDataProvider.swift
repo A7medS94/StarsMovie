@@ -13,38 +13,15 @@ import Alamofire
 class PopularPeopleDataProvider {
     
     
-    class func getPopularPeople(page : Int = 1, complation: @escaping (_ popularPeoples : PopularPeople , _ lastPage : Int)-> Void){
-        
-        let url = URLs.PopularPeopleURL + String(page)
-        print(url)
-        
-        Alamofire.request(url).responseJSON { (response) in
-            
-            do{
-                let JSONdecoder = try JSONDecoder().decode(PopularPeople.self , from: response.data!)
-                
-                var lastPage = Int()
-                
-                if let totalPages = JSONdecoder.total_pages{
-                    lastPage = totalPages
-                }
-                
-                complation(JSONdecoder, lastPage)
-                
-            }catch{
-                print("error")
-            }
-        }
-    }
     
-    class func getDetails(personID : Int , complation: @escaping (_ details : Details)-> Void){
+    class func getDetails(personID : Int , complation: @escaping (_ details : ActorDetailsDTO)-> Void){
         
         let url = URLs.DetailBaseURL + String(personID) + URLs.DetailEndURL
         
         Alamofire.request(url).responseJSON { (response) in
             
             do{
-                let JSONdecoder = try JSONDecoder().decode(Details.self , from: response.data!)
+                let JSONdecoder = try JSONDecoder().decode(ActorDetailsDTO.self , from: response.data!)
                 
                 complation(JSONdecoder)
                 
@@ -54,14 +31,14 @@ class PopularPeopleDataProvider {
         }
     }
     
-    class func getMovieCredit(personID : Int , complation: @escaping (_ movieCredits : MovieCredit)-> Void){
+    class func getMovieCredit(personID : Int , complation: @escaping (_ movieCredits : MovieCreditDTO)-> Void){
         
         let url = URLs.MovieCreditsBaseURL + String(personID) + URLs.MovieCreditsEndURL
         
         Alamofire.request(url).responseJSON { (response) in
             
             do{
-                let JSONdecoder = try JSONDecoder().decode(MovieCredit.self , from: response.data!)
+                let JSONdecoder = try JSONDecoder().decode(MovieCreditDTO.self , from: response.data!)
                 
                 complation(JSONdecoder)
                 

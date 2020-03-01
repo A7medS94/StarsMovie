@@ -9,7 +9,7 @@
 import UIKit
 import IHProgressHUD
 
-class BaseVC: UIViewController {
+class BaseVC: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,12 @@ class BaseVC: UIViewController {
     }
     
     private func loadingConfg(){
-        IHProgressHUD.set(foregroundColor: .blue)
-        IHProgressHUD.set(ringThickness: 5)
-        IHProgressHUD.set(defaultStyle: .light)
+        IHProgressHUD.set(foregroundColor: .orange)
+        IHProgressHUD.set(ringThickness: 7)
+        IHProgressHUD.set(defaultStyle: .dark)
         IHProgressHUD.set(defaultMaskType: .custom)
         IHProgressHUD.set(backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.2))
-        IHProgressHUD.setHUD(backgroundColor: .white)
+        IHProgressHUD.setHUD(backgroundColor: .black)
     }
     private func startAnimatingNetworkActivity() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

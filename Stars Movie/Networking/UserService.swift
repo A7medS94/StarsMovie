@@ -13,6 +13,8 @@ let apiKey = "94e302580d54368e7e936b7fdb9794ab"
 
 enum UserService{
     case getPopular(page: Int)
+    case getActorDetails(id: Int)
+    case getActorMovies(id: Int)
 }
 
 extension UserService: TargetType {
@@ -24,13 +26,17 @@ extension UserService: TargetType {
         switch self {
         case .getPopular(_):
             return "/person/popular"
+        case .getActorDetails(let id):
+            return "/person/\(id)"
+        case .getActorMovies(let id):
+            return "/person/\(id)/movie_credits"
 
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getPopular(_):
+        case .getPopular(_), .getActorDetails(_), .getActorMovies(_):
             return .get
 
         }
@@ -53,10 +59,9 @@ extension UserService: TargetType {
         switch self {
         case .getPopular(let page):
             return .requestParameters(parameters: ["api_key":apiKey,"language":"en-US","page":page], encoding: URLEncoding.default)
-        default:
-            return .requestPlain
+        case.getActorDetails(_), .getActorMovies(_):
+            return .requestParameters(parameters: ["api_key":apiKey,"language":"en-US"], encoding: URLEncoding.default)
         }
-        
     }
     
     var headers: [String : String]? {

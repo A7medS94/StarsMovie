@@ -28,10 +28,12 @@ class HomeVC: BaseVC {
     private var isloading = false
     private var currentPage = 1
     private var lastPage = 1
+    var coordinator: HomeCoordinator?
     
     //MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.coordinator = HomeCoordinator(navigationController: self.navigationController!)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,8 +51,9 @@ class HomeVC: BaseVC {
         self.refresher.endRefreshing()
         guard !isloading else {return}
         self.isloading = true
+        self.startLoading()
         self.viewModel.popularRequest()?.subscribe(onNext: { [weak self] response in
-            
+            self?.endLoading()
             if (response.success ?? true) == true{
                 self?.results = response.results
                 self?.lastPage = response.total_pages ?? 1
@@ -61,6 +64,7 @@ class HomeVC: BaseVC {
                 self?.showErrorMessage(message: response.status_message ?? "")
             }
             }, onError: { (error) in
+                self.endLoading()
                 print(error.localizedDescription)
         }).disposed(by: self.bag)
     }
@@ -124,11 +128,8 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let result = self.results![indexPath.row]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "detailsVC") as! DetailsVC
-        VC.result = result
-        present(VC, animated: true, completion: nil)
+        guard let actorId = self.results?[indexPath.row].id else {return}
+        self.coordinator?.goToDetails(actorId: actorId)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

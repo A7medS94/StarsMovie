@@ -82,11 +82,9 @@ extension SearchVC : UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let person = self.result![indexPath.row]
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "detailsFromSearchVC") as! DetailsFromSearchVC
-        VC.person = person
+        guard let actorId = self.result?[indexPath.row].id else {return}
+        let VC = DetailsVC.instantiate("Main")
+        VC.actorId = actorId
         present(VC, animated: true, completion: nil)
     }
     
