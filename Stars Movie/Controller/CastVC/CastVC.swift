@@ -7,95 +7,94 @@
 //
 
 import UIKit
+import RxSwift
 import Kingfisher
 
-class CastVC: UIViewController {
+class CastVC: BaseVC {
     
-    //Outlets
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    //MARK: - Outlets
     @IBOutlet weak var backDropImage: UIImageView!
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var releaseLbl: UILabel!
     @IBOutlet weak var overviewTxtView: UITextView!
     @IBOutlet weak var characterLbl: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var movieCastCollectionView: UICollectionView!
+    @IBOutlet weak var viewModel: CastViewModel!
     
-    //Vars
-    var cast : Cast?
-    private var movieCrew : MovieCrew?
+    //MARK: - Vars
+    private let bag = DisposeBag()
+    var cast: Cast?
     private var cellIdentifier = "CrewCell"
+    private var movieCast: MovieCastDTO?
+    weak var coordinator: CastCoordinator?
     
-    
+    //MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
-        customStatusBar()
-        displayData()
-        navigationBar.topItem?.title = cast?.original_title ?? "Unknown"
-        requestMovieCrew()
-        collectionView.dataSource = self
-        collectionView.delegate = self
     }
-    ///Returns light status bar content
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.displayData()
+        self.getMovieCast()
     }
-    ///Tells the status bar the background color is the same nabigation bar color
-    private func customStatusBar(){
-        if let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView {
-            statusBar.backgroundColor = navigationBar.barTintColor
-        }
+    
+    //MARK: - Methods
+    override func congifureOutLets() {
+        self.movieCastCollectionView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        self.movieCastCollectionView.dataSource = self
+        self.movieCastCollectionView.delegate = self
     }
-    ///Dismiss the view controller
-    @IBAction func backBtn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    
+    private func getMovieCast(){
+        self.startLoading()
+        self.viewModel.movieCastRequest(castId: (self.cast?.id)!)?.subscribe(onNext: { [weak self] response in
+            self?.endLoading()
+            if (response.success ?? true) == true{
+                self?.movieCast = response
+                self?.movieCastCollectionView.reloadData()
+            }else{
+                self?.showErrorMessage(message: response.status_message ?? "")
+            }
+            }, onError: { (error) in
+                self.endLoading()
+                print(error.localizedDescription)
+        }).disposed(by: self.bag)
     }
-    ///Downloading the cover image using Alamofire and displaying it
-    private func displaybackdrop(){
-        
-        let url = URL(string: URLs.ImageRequestURL + (cast!.backdrop_path ?? ""))
-        self.backDropImage.kf.indicatorType = .activity
-        self.backDropImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: nil, completionHandler: nil)
-    }
-    ///Downloading the poster image using Alamofire and displaying it
-    private func displayposter(){
-        
-        let url = URL(string: URLs.ImageRequestURL + (cast!.poster_path ?? ""))
-        self.posterImage.kf.indicatorType = .activity
-        self.posterImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: [.transition(ImageTransition.flipFromTop(0.5))], progressBlock: nil, completionHandler: nil)
-    }
-    ///Displaying movie data data
+    
     private func displayData(){
-        self.displaybackdrop()
-        self.displayposter()
-        releaseLbl.text = "Release(\(cast?.release_date ?? "Unknown"))"
-        overviewTxtView.text = cast?.overview ?? "Unknown"
-        characterLbl.text = cast?.character ?? "Unknown"
+        self.title = cast?.original_title ?? "Unknown"
+        self.releaseLbl.text = "Release(\(cast?.release_date ?? "Unknown"))"
+        self.overviewTxtView.text = cast?.overview ?? "Unknown"
+        self.characterLbl.text = cast?.character ?? "Unknown"
+        let url = URLs.ImageRequestURL
+        self.backDropImage.setImage(url: url + (self.cast?.backdrop_path ?? ""), placeHolder: "placeholder")
+        self.posterImage.setImage(url: url + (self.cast?.poster_path ?? ""), placeHolder: "placeholder")
     }
-    ///Getting the movie crews data using compilation handler
-    private func requestMovieCrew(){
-        
-        PopularPeopleDataProvider.getMovieCrew(movieID : cast?.id ?? 0) { (movieCrew) in
-            
-            self.movieCrew = movieCrew
-            self.collectionView.reloadData()
-        }
-    }
+    
+    //MARK: - Actions
+    //MARK: - CollectionView DataSource
+    //MARK: - CollectionView Delegate
+    //MARK: - TableView DataSource
+    //MARK: - TableView Delegate
+    //MARK: - TextField Delegate
+
+
 }
 
 
 
-extension CastVC : UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
+extension CastVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieCrew?.cast?.count ?? 0
+        return self.movieCast?.cast?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? CrewCell else {return UICollectionViewCell()}
         
-        cell.displayImg(URLString: movieCrew?.cast![indexPath.row].profile_path ?? "")
-        cell.nameLbl.text = movieCrew?.cast![indexPath.row].name ?? "Unknown"
+        cell.displayImg(URLString: self.movieCast?.cast![indexPath.row].profile_path ?? "")
+        cell.nameLbl.text = self.movieCast?.cast![indexPath.row].name ?? "Unknown"
         
         return cell
     }

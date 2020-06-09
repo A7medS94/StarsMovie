@@ -1,18 +1,18 @@
 //
-//  DetailsCoordinator.swift
+//  CastCoordinator.swift
 //  Stars Movie
 //
-//  Created by Ahmed Samir on 3/1/20.
+//  Created by Ahmed Samir on 6/9/20.
 //  Copyright © 2020 Ahmed Samir. All rights reserved.
 //
 
 import UIKit
 
-class DetailsCoordinator: NSObject, Coordinator, UINavigationControllerDelegate{
+class CastCoordinator: NSObject, Coordinator, UINavigationControllerDelegate{
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-    weak var parentCoordinatorFromHome: HomeCoordinator?
+    weak var parentCoordinatorFromDetails: DetailsCoordinator?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -21,19 +21,13 @@ class DetailsCoordinator: NSObject, Coordinator, UINavigationControllerDelegate{
         
     }
     
-    func start(actorId: Int){
-        let vc = DetailsVC.instantiate("Main")
+    func start(cast: Cast){
+        let vc = CastVC.instantiate("Main")
         vc.coordinator = self
-        vc.actorId = actorId
+        vc.cast = cast
         self.navigationController.pushViewController(vc, animated: true)
     }
     
-    func goToCast(cast: Cast){
-        let child = CastCoordinator(navigationController: navigationController)
-        child.parentCoordinatorFromDetails = self
-        childCoordinators.append(child)
-        child.start(cast: cast)
-    }
     
     
     //MARK: - UINavigationControllerDelegate

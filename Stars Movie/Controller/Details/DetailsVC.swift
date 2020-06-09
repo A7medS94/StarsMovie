@@ -121,11 +121,7 @@ extension DetailsVC : UICollectionViewDataSource, UICollectionViewDelegateFlowLa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cast = self.actorMovies?.cast![indexPath.row]
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "castVC") as! CastVC
-        VC.cast = cast
-        present(VC, animated: true, completion: nil)
+        self.coordinator?.goToCast(cast: cast!)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
