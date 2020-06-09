@@ -19,4 +19,10 @@ extension UIViewController{
         alert.addAction(action)
         present(alert, animated: true)
     }
+    
+    func overViewPOPUP(message: String){
+        let vc = POPUPVC.instantiate("POPUP")
+        vc.message = message
+        present(vc, animated: true, completion: nil)
+    }
 }

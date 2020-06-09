@@ -33,6 +33,8 @@
 		8C57229E240C74F100A1B80A /* MovieCreditDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C57229D240C74F100A1B80A /* MovieCreditDTO.swift */; };
 		8C7B7814224D910F003E689C /* PopularPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B7812224D910F003E689C /* PopularPeopleCell.swift */; };
 		8C7B7815224D910F003E689C /* PopularPeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7B7813224D910F003E689C /* PopularPeopleCell.xib */; };
+		8C85E2B2248FB19E00A84B05 /* POPUP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C85E2B1248FB19E00A84B05 /* POPUP.storyboard */; };
+		8C85E2B4248FB4B500A84B05 /* POPUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C85E2B3248FB4B500A84B05 /* POPUPVC.swift */; };
 		8C8D9F8A224E124800D33C9E /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8D9F89224E124700D33C9E /* URLs.swift */; };
 		8C9016E3224E4ABA00975BFB /* PopularPeopleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9016E2224E4ABA00975BFB /* PopularPeopleDataProvider.swift */; };
 		8CA875A522511EC900CF2BBE /* DetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA875A322511EC900CF2BBE /* DetailsCell.swift */; };
@@ -100,6 +102,8 @@
 		8C57229D240C74F100A1B80A /* MovieCreditDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditDTO.swift; sourceTree = "<group>"; };
 		8C7B7812224D910F003E689C /* PopularPeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleCell.swift; sourceTree = "<group>"; };
 		8C7B7813224D910F003E689C /* PopularPeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPeopleCell.xib; sourceTree = "<group>"; };
+		8C85E2B1248FB19E00A84B05 /* POPUP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = POPUP.storyboard; sourceTree = "<group>"; };
+		8C85E2B3248FB4B500A84B05 /* POPUPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POPUPVC.swift; sourceTree = "<group>"; };
 		8C8D9F89224E124700D33C9E /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		8C9016E2224E4ABA00975BFB /* PopularPeopleDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleDataProvider.swift; sourceTree = "<group>"; };
 		8CA875A322511EC900CF2BBE /* DetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCell.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			children = (
 				88BDBE6223FA8D7A009091F9 /* BaseVC.swift */,
 				88BDBE6523FA922E009091F9 /* BaseViewModel.swift */,
+				8C85E2B3248FB4B500A84B05 /* POPUPVC.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				8C23226D224D429100A7C7C1 /* Controller */,
 				88CEDA482407DD3B0019CB0E /* Extentions */,
 				8C232241224D41CA00A7C7C1 /* Main.storyboard */,
+				8C85E2B1248FB19E00A84B05 /* POPUP.storyboard */,
 				8C232244224D41CB00A7C7C1 /* Assets.xcassets */,
 				8C232246224D41CB00A7C7C1 /* LaunchScreen.storyboard */,
 				8C232249224D41CB00A7C7C1 /* Info.plist */,
@@ -503,6 +509,7 @@
 				8CFA3644225233FD006E4C99 /* SearchPeopleCell.xib in Resources */,
 				8C232248224D41CB00A7C7C1 /* LaunchScreen.storyboard in Resources */,
 				8C232245224D41CB00A7C7C1 /* Assets.xcassets in Resources */,
+				8C85E2B2248FB19E00A84B05 /* POPUP.storyboard in Resources */,
 				8C7B7815224D910F003E689C /* PopularPeopleCell.xib in Resources */,
 				8CA875A622511EC900CF2BBE /* DetailsCell.xib in Resources */,
 				8CDC9CF12251A86700D6A5EF /* CrewCell.xib in Resources */,
@@ -592,6 +599,7 @@
 				8CDC9CE92251A25700D6A5EF /* CrewStruct.swift in Sources */,
 				8CDC9CE722517D8200D6A5EF /* CastVC.swift in Sources */,
 				8C3E357E2250048E00F0C376 /* DetailsVC.swift in Sources */,
+				8C85E2B4248FB4B500A84B05 /* POPUPVC.swift in Sources */,
 				8C57229A240C52E600A1B80A /* DetailsCoordinator.swift in Sources */,
 				8CFA363D22521ED1006E4C99 /* SearchVC.swift in Sources */,
 				88BDBE6C23FA95A7009091F9 /* UserService.swift in Sources */,

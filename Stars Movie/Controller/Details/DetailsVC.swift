@@ -98,9 +98,7 @@ class DetailsVC: BaseVC {
     
     //MARK: - Actions
     @IBAction func seeMoreBtn(_ sender: Any) {
-    //        self.superView.isHidden = false
-    //        self.subView.isHidden = false
-    //        self.biographyTxtView.text = Details?.biography ?? "Unknown"
+        self.overViewPOPUP(message: actorDetails?.biography ?? "Unknown")
     }
 }
 
