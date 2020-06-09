@@ -13,6 +13,7 @@ class DetailsCoordinator: NSObject, Coordinator, UINavigationControllerDelegate{
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     weak var parentCoordinatorFromHome: HomeCoordinator?
+    weak var parentCoordinatorFromSearch: SearchCoordinator?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }

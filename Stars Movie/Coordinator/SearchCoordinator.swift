@@ -1,38 +1,34 @@
 //
-//  HomeCoordinator.swift
+//  SearchCoordinator.swift
 //  Stars Movie
 //
-//  Created by Ahmed Samir on 3/1/20.
+//  Created by Ahmed Samir on 6/9/20.
 //  Copyright © 2020 Ahmed Samir. All rights reserved.
 //
 
 import UIKit
 
-class HomeCoordinator: NSObject, Coordinator, UINavigationControllerDelegate{
+class SearchCoordinator: NSObject, Coordinator, UINavigationControllerDelegate{
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-    
+    weak var parentCoordinatorFromHome: HomeCoordinator?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-        
+        let vc = SearchVC.instantiate("Main")
+        vc.coordinator = self
+        self.navigationController.navigationBar.shadowImage = UIImage()
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func goToDetails(actorId: Int){
         let child = DetailsCoordinator(navigationController: navigationController)
-        child.parentCoordinatorFromHome = self
+        child.parentCoordinatorFromSearch = self
         childCoordinators.append(child)
         child.start(actorId: actorId)
-    }
-    
-    func goToSearch(){
-        let child = SearchCoordinator(navigationController: navigationController)
-        child.parentCoordinatorFromHome = self
-        childCoordinators.append(child)
-        child.start()
     }
     
     

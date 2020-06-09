@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import Kingfisher
 
 class CastVC: BaseVC {
     
@@ -67,19 +66,10 @@ class CastVC: BaseVC {
         self.releaseLbl.text = "Release(\(cast?.release_date ?? "Unknown"))"
         self.overviewTxtView.text = cast?.overview ?? "Unknown"
         self.characterLbl.text = cast?.character ?? "Unknown"
-        let url = URLs.ImageRequestURL
+        let url = ImageRequestURL
         self.backDropImage.setImage(url: url + (self.cast?.backdrop_path ?? ""), placeHolder: "placeholder")
         self.posterImage.setImage(url: url + (self.cast?.poster_path ?? ""), placeHolder: "placeholder")
     }
-    
-    //MARK: - Actions
-    //MARK: - CollectionView DataSource
-    //MARK: - CollectionView Delegate
-    //MARK: - TableView DataSource
-    //MARK: - TableView Delegate
-    //MARK: - TextField Delegate
-
-
 }
 
 

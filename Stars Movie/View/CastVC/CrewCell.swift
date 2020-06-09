@@ -21,7 +21,7 @@ class CrewCell: UICollectionViewCell {
     
     func displayImg(URLString : String){
         
-        let url = URL(string: URLs.ImageRequestURL + URLString)
+        let url = URL(string: ImageRequestURL + URLString)
         self.posterImage.kf.indicatorType = .activity
         self.posterImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: [.transition(ImageTransition.flipFromTop(0.5))], progressBlock: nil, completionHandler: nil)
     }

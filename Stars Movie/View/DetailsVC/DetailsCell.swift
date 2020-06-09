@@ -20,7 +20,7 @@ class DetailsCell: UICollectionViewCell {
     
     func displayImg(URLString : String){
         
-        let url = URL(string: URLs.ImageRequestURL + URLString)
+        let url = URL(string: ImageRequestURL + URLString)
         self.profileImage.kf.indicatorType = .activity
         self.profileImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: [.transition(ImageTransition.flipFromTop(0.5))], progressBlock: nil, completionHandler: nil)
     }

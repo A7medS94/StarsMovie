@@ -94,11 +94,8 @@ class HomeVC: BaseVC {
     
     
     //MARK: - Actions
-    @IBAction func searchBtn(_ sender: Any) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "searchVC") as! SearchVC
-        present(VC, animated: true, completion: nil)
+    @IBAction func searchBtnDidTapped(_ sender: Any) {
+        self.coordinator?.goToSearch()
     }
 }
 
@@ -114,7 +111,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? PopularPeopleCell else {return UICollectionViewCell()}
         
-        cell.popularPersonImage.setImage(url: URLs.ImageRequestURL + (self.results?[indexPath.row].profile_path ?? ""), placeHolder: "placeholder")
+        cell.popularPersonImage.setImage(url: ImageRequestURL + (self.results?[indexPath.row].profile_path ?? ""), placeHolder: "placeholder")
         cell.nameLbl.text = self.results?[indexPath.row].name ?? ""
         var knownFor = ""
         for data in self.results?[indexPath.row].known_for ?? [] {

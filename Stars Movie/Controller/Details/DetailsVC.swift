@@ -84,7 +84,7 @@ class DetailsVC: BaseVC {
     
     private func setData(){
         self.title = self.actorDetails?.name ?? "Unkown"
-        self.profilePicImage.setImage(url: URLs.ImageRequestURL + (self.actorDetails?.profile_path ?? ""), placeHolder: "placeholder")
+        self.profilePicImage.setImage(url: ImageRequestURL + (self.actorDetails?.profile_path ?? ""), placeHolder: "placeholder")
         if actorDetails?.gender == 1 {
             self.genderLbl.text = "Female"
         }

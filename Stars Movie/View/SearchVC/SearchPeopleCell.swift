@@ -27,7 +27,7 @@ class SearchPeopleCell: UITableViewCell {
     
     func displayImg(URLString : String){
         
-        let url = URL(string: URLs.ImageRequestURL + URLString)
+        let url = URL(string: ImageRequestURL + URLString)
         self.personImage.kf.indicatorType = .activity
         self.personImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: nil, completionHandler: nil)
     }

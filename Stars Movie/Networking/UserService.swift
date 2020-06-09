@@ -10,12 +10,14 @@ import Foundation
 import Moya
 
 let apiKey = "94e302580d54368e7e936b7fdb9794ab"
+let ImageRequestURL = "https://image.tmdb.org/t/p/w500"
 
 enum UserService{
     case getPopular(page: Int)
     case getActorDetails(id: Int)
     case getActorMovies(id: Int)
     case getMovieCast(id: Int)
+    case getQuery(page: Int, name: String)
 }
 
 extension UserService: TargetType {
@@ -33,13 +35,14 @@ extension UserService: TargetType {
             return "/person/\(id)/movie_credits"
         case .getMovieCast(let id):
             return "/movie/\(id)/credits"
-
+        case .getQuery(_,_):
+            return "/search/person"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getPopular(_), .getActorDetails(_), .getActorMovies(_), .getMovieCast(_):
+        case .getPopular(_), .getActorDetails(_), .getActorMovies(_), .getMovieCast(_), .getQuery(_,_):
             return .get
 
         }
@@ -47,7 +50,7 @@ extension UserService: TargetType {
     
     var parameterEncoding: Moya.ParameterEncoding {
         switch self {
-        case .getPopular(_):
+        case .getPopular(_), .getQuery(_,_):
             return URLEncoding.queryString
         default:
             return URLEncoding.default
@@ -62,8 +65,10 @@ extension UserService: TargetType {
         switch self {
         case .getPopular(let page):
             return .requestParameters(parameters: ["api_key":apiKey,"language":"en-US","page":page], encoding: URLEncoding.default)
-        case.getActorDetails(_), .getActorMovies(_), .getMovieCast(_):
+        case .getActorDetails(_), .getActorMovies(_), .getMovieCast(_):
             return .requestParameters(parameters: ["api_key":apiKey,"language":"en-US"], encoding: URLEncoding.default)
+        case .getQuery(let page, let name):
+            return .requestParameters(parameters: ["api_key":apiKey,"language":"en-US","query":name,"page":page,"include_adult":"false"], encoding: URLEncoding.default)
         }
     }
     
